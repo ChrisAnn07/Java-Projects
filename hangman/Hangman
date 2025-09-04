@@ -1,0 +1,405 @@
+package projects;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import java.io.*;
+
+public class Hangman extends JPanel 
+{
+   
+
+   private ArrayList<String> easyList;
+   private ArrayList<String> mediumList;
+   private ArrayList<String> hardList;
+   private JLabel dash, message, enter, label1, label2, label3, label4, label5, label6, label7, guesses, fun;
+   private JRadioButton easy, medium, hard;
+   private String easyChoice, mediumChoice, hardChoice;
+   private Random rand;
+   private int randIndex, cnt;
+   private String randEasy, randMedium, randHard;
+   private Scanner scan;
+   private ArrayList<Character> playerGuess;
+   private ArrayList<Character> finalword;
+   private JTextField letterGuess;
+   private String strgame  ; 
+   private char strdisplay = ' ';
+   private ImageIcon icon1, icon2, icon3, icon4, icon5, icon6, icon7;
+   private JCheckBox font1, font2, color1, color2;
+  
+   public Hangman(){
+   
+  
+	   
+	  easyChoice = "------";
+	  mediumChoice = "--------";
+	  hardChoice = "----------";
+	  
+	  scan = new Scanner(System.in);
+	  easyList = new ArrayList<String>();
+	  mediumList = new ArrayList<String>();
+	  hardList = new ArrayList<String>();
+	  easyList.add("uplift");
+	  easyList.add("figure");
+	  easyList.add("hidden");
+	  easyList.add("slicer");
+	  easyList.add("active");
+	  mediumList.add("academic");
+	  mediumList.add("bacteria");
+	  mediumList.add("compound");
+	  mediumList.add("engineer");
+	  mediumList.add("junction");
+	  hardList.add("industrial");
+	  hardList.add("exercising");
+	  hardList.add("prosperity");
+	  hardList.add("bitterness");
+	  hardList.add("perception");
+	  	
+	  	String strdisplay = "";
+	  	rand = new Random();
+	    randIndex = rand.nextInt(4);
+	    randEasy = easyList.get(randIndex);
+	    randMedium = mediumList.get(randIndex);
+	    randHard = hardList.get(randIndex);
+	    strgame = "";
+	    cnt = 0;
+  
+	   icon1 = new ImageIcon("src/image1.png");
+	   icon2 = new ImageIcon("src/image2.png");
+	   icon3 = new ImageIcon("src/image3.png");
+	   icon4 = new ImageIcon("src/image4.png");
+	   icon5 = new ImageIcon("src/image5.png");
+	   icon6 = new ImageIcon("src/image6.png");
+	   icon7 = new ImageIcon("src/image7.png");
+	     
+	  playerGuess = new ArrayList<Character>();
+	  finalword = new ArrayList<Character>();
+	  
+      setBackground(Color.pink);
+      setPreferredSize(new Dimension(300, 100));
+
+     
+      dash = new JLabel();
+      
+      
+      label1 = new JLabel(icon1);
+      
+      label2 = new JLabel(icon2);
+      label4 = new JLabel(icon4);
+      label5 = new JLabel(icon5);
+      label6 = new JLabel(icon6);
+      label7 = new JLabel(icon7);
+      
+      
+      fun = new JLabel("Customization: ");
+      fun.setFont(new Font("Helvetica", Font.BOLD, 14));
+      
+      guesses = new JLabel();
+      guesses.setLocation(200, 300);
+    
+    
+      message = new JLabel();
+      enter = new JLabel("Please enter a letter");
+      dash.setFont(new Font("Helvetica", Font.BOLD, 24));
+      
+      letterGuess = new JTextField();
+      letterGuess.setPreferredSize(new Dimension(100,30));
+    
+
+      easy = new JRadioButton("Easy", true);
+      easy.setBackground(Color.pink);
+      medium = new JRadioButton("Medium");
+      medium.setBackground(Color.pink);
+      hard = new JRadioButton("Hard");
+      hard.setBackground(Color.pink);
+      
+
+      ButtonGroup group = new ButtonGroup();
+      group.add(easy);
+      group.add(medium);
+      group.add(hard);
+
+      font1 = new JCheckBox("Baskerville");
+      font1.setBackground(getBackground());
+      font2 = new JCheckBox("Times New Roman");
+      font2.setBackground(getBackground());
+      color1 = new JCheckBox("Cyan");
+      color1.setBackground(getBackground());
+      color2 = new JCheckBox("Orange");
+      color2.setBackground(getBackground());
+     
+      QuoteListener listener = new QuoteListener();
+      easy.addActionListener(listener);
+      medium.addActionListener(listener);
+      hard.addActionListener(listener);
+
+      label3 = new JLabel(icon3);
+      
+      StyleListener listener3 = new StyleListener();
+      font1.addItemListener(listener3);
+      font2.addItemListener(listener3);
+      color1.addItemListener(listener3);
+      color2.addItemListener(listener3);
+      
+   icon1.setImage(icon1.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+   icon2.setImage(icon2.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+   icon3.setImage(icon3.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+   icon4.setImage(icon4.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+   icon5.setImage(icon5.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+   icon6.setImage(icon6.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+   icon7.setImage(icon7.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+    
+    label1.setVisible(false);
+    label2.setVisible(false);
+    label3.setVisible(false);
+    label4.setVisible(false);
+    label5.setVisible(false);
+    label6.setVisible(false);
+    label7.setVisible(false);
+
+      TextListener listener1 = new TextListener();
+      letterGuess.addActionListener(listener1);
+ 
+      add(dash);
+      add(label1);
+      add(label2);
+      add(label3);
+      add(label4);
+      add(label5);
+      add(label6);
+      add(label7);
+      
+    
+     
+      add(message);
+      add(letterGuess);
+      add(enter);
+      add(easy);
+      add(medium);
+      add(hard);
+      add(guesses);
+   
+      add(fun);
+      
+      add(font1);
+      add(font2);
+      add(color1);
+      add(color2);
+      
+   }
+  
+
+  
+   //radio buttons for the easy, medium, hard levels
+   public class QuoteListener implements ActionListener
+   {
+	
+	   
+      public void actionPerformed(ActionEvent event)
+      {
+    	 
+         Object source = event.getSource();
+         
+         if (source == easy){
+        	dash.setText(easyChoice);
+        	strgame= "Easy";
+  	      }
+              
+         else if (source == medium){
+        	 dash.setText(mediumChoice);
+        	 strgame = "Medium";
+         }
+            else  {
+            	dash.setText(hardChoice);
+            	strgame= "Hard";
+            }
+ 
+      }
+   }
+     
+   
+   
+   public class TextListener implements ActionListener
+   
+  {
+      
+      public void actionPerformed(ActionEvent event)
+      {
+         
+    	  
+    	  if(strgame.equals("Medium"))
+    	  {
+    		  randEasy = randMedium;
+    		  dash.setText("");
+    	  }
+    	  else if (strgame.equals("Hard"))
+    	  {
+    		  randEasy= randHard;
+    		  dash.setText("");
+    	  }
+    	 
+    
+    	  //getting text from text field
+    	 String text = letterGuess.getText();
+   
+       
+         playerGuess.add(text.charAt(0));
+
+         
+         //checking if letter is in word
+         if (finalword.size() < randEasy.length()) 
+         {
+           int i = 0;
+           while (i < randEasy.length())
+           {
+        
+        	 if(playerGuess.contains(randEasy.charAt(i)))
+        	 {
+        			 finalword.add(i,randEasy.charAt(i));
+        			 
+        	 }
+        	 else {
+      	                   		
+            	    	finalword.add(i,'-');
+            	    	guesses.setText("List of words you have entered: " + playerGuess.toString());
+        	  }
+        	 i++;
+           }
+          }
+         else
+          {
+      
+        	 //checking for the second letter and if it needs to replace the dash with the appropriate letter
+        	 int i = 0;
+        	 while ( i < randEasy.length())
+             {
+        	  if(playerGuess.contains(randEasy.charAt(i)))
+        	   {      
+        			 finalword.remove(i);
+        			 finalword.add(i,randEasy.charAt(i)); 
+        	 }
+        	 else {
+            			 finalword.remove(i);
+            			 finalword.add(i,'-');
+            			 guesses.setText("List of words you have entered: " + playerGuess.toString());
+            	 }
+        	  i++;
+        	 }
+         }
+         
+         if (!randEasy.contains(text))
+         {
+        	 cnt++;
+         }
+      
+         message.setText(finalword.toString());
+         hangmanImage(cnt);
+         letterGuess.setText("");
+         if ((!finalword.contains('-')) && (finalword.size() == randEasy.length()))
+         {
+        	 if(strgame.equals("Easy")) {
+ 				message.setText("Congratulations You Solved The Word! The word was " + randEasy);
+ 			} else if(strgame.equals("Medium")) {
+ 				message.setText(" Congratulations You Solved The Word! The word was " + randMedium);
+ 			} else if(strgame.equals("Hard")) {
+ 				message.setText("Congratulations You Solved The Word! The word was " + randHard);
+ 			}
+        	
+        	 enter.setText("");
+         }
+      
+               
+       }
+   }
+   
+   
+  //customization checkboxes; change font and color
+  private class StyleListener implements ItemListener
+   {
+  
+     
+	  public void itemStateChanged(ItemEvent event)
+      {
+       
+     
+         if (font1.isSelected()) {
+        	 dash.setFont(new Font("Baskerville", Font.PLAIN, 14));
+        	 message.setFont(new Font("Baskerville", Font.PLAIN, 14));
+        	 enter.setFont(new Font("Baskerville", Font.PLAIN, 14));
+        	 guesses.setFont(new Font("Baskerville", Font.PLAIN, 14));
+        	 fun.setFont(new Font("Baskerville", Font.BOLD, 14));
+         }
+            
+
+         if (font2.isSelected()) {
+           dash.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+         message.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+         enter.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+         guesses.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+         fun.setFont(new Font("Times New Roman", Font.BOLD, 14));
+      }
+      
+      if(color1.isSelected()) {
+    	  setBackground(Color.cyan);
+    	  easy.setBackground(Color.cyan);
+    	  medium.setBackground(Color.cyan);
+    	  hard.setBackground(Color.cyan);
+    	  font1.setBackground(Color.cyan);
+    	  font2.setBackground(Color.cyan);
+    	  color1.setBackground(Color.cyan);
+    	  color2.setBackground(Color.cyan);
+      }
+     
+      if(color2.isSelected()) {
+    	  setBackground(Color.orange);
+    	  medium.setBackground(Color.orange);
+    	  easy.setBackground(Color.orange);
+    	  hard.setBackground(Color.orange);
+    	  font1.setBackground(Color.orange);
+    	  font2.setBackground(Color.orange);
+    	  color1.setBackground(Color.orange);
+    	  color2.setBackground(Color.orange);
+      }
+   }
+  
+   }
+  
+  //display the images for hangman if user gets multiple letters wrong
+  public void hangmanImage(int count) {
+    
+
+  
+		if (count == 1) 
+			label1.setVisible(true);
+		
+		if (count == 2) 
+			label2.setVisible(true);
+		
+		if (count == 3) 
+			label3.setVisible(true);
+		
+		if (count == 4) 
+			label4.setVisible(true);
+		
+		if (count == 5) 
+			label5.setVisible(true);
+		
+		if (count == 6) 
+			label6.setVisible(true);
+		
+		if (count == 7) {
+
+			label7.setVisible(true);
+			
+			if(strgame.equals("Easy")) {
+				message.setText("GAME OVER! The word was " + randEasy);
+			} else if(strgame.equals("Medium")) {
+				message.setText("GAME OVER! The word was " + randMedium);
+			} else if(strgame.equals("Hard")) {
+				message.setText("GAME OVER! The word was " + randHard);
+			}
+			enter.setText("");
+		}
+	}
+   
+  }
