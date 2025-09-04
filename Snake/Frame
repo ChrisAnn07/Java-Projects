@@ -1,0 +1,28 @@
+import javax.swing.JFrame;
+
+
+public class Frame 
+{
+
+	public static void main(String[] args)
+	{
+		
+		int w = 1000;
+		int h = 500;
+		
+		//sets up a JFrame object with title "Template"
+		JFrame frame = new JFrame("Snake");
+		//make sure the jframe closes when you hit the 'x'
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//adds the drawing panel to the frame
+		frame.getContentPane().add(new Snake(w,h));
+		//resizes the frame to fit the panel
+		frame.pack();
+		//makes it visible
+		frame.setVisible(true);
+		
+		
+
+	}
+
+}
