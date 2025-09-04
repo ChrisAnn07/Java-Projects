@@ -1,0 +1,55 @@
+//Christa
+import java.util.*;
+import javax.swing.JOptionPane; 
+public class Civilian {
+  protected String firstName, lastName, pets, petName;
+  protected int balance;
+  public Civilian(String firstName, String lastName){
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  //accessing your name
+  public void getName(){
+	  JOptionPane.showMessageDialog(null,firstName + " " + lastName); 
+  }
+  //choosing if you want a pet and what to name it
+  public void pets(){
+    System.out.println("Do you want a pet?");
+    String ans =JOptionPane.showInputDialog(null,"Do you want a pet?"); 
+    if(ans.equals("yes")){
+      System.out.println("Do you want a dog or cat?");
+      String ans2 =JOptionPane.showInputDialog(null,"Do you want a dog or cat?"); 
+     if(ans2.equals("dog"))
+      pets = "dog";
+    else
+      pets = "cat";
+     petName =JOptionPane.showInputDialog(null,"What do you want to name your " + pets + "?"); 
+     JOptionPane.showMessageDialog(null,"Your pet's name: " + petName);
+    }
+    else {
+    	JOptionPane.showMessageDialog(null,"L"); 
+    }
+      
+    }
+
+  //subtracting from your total amount 
+  public void petMoney()
+  {
+    balance -= 10;
+        JOptionPane.showMessageDialog(null,"$" + balance + " after paying for pet food."); 
+  }
+  
+  //number of years you have left
+  public void lifeSpan(){
+      JOptionPane.showMessageDialog(null, "Your lifespan is 500 years and will change depending on your actions.");
+    } 
+  //returns how much money you have left
+    public void getMoney(){
+      balance = 200;
+      JOptionPane.showMessageDialog(null,"$" + balance); 
+    
+    } 
+    
+   
+}
