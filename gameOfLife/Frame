@@ -1,0 +1,107 @@
+//Christa
+import java.util.*;
+import javax.swing.JOptionPane;
+import java.io.*;
+class Frame {
+  public static void main(String[] args) throws IOException 
+  {
+    //getting user's name
+    String fName=JOptionPane.showInputDialog(null,"What is your first name?");   
+    String lName=JOptionPane.showInputDialog(null,"What is your last name?");   
+    
+    Civilian obj1 = new Civilian(fName, lName);
+    obj1.pets(); 
+    
+    //deciding between career and college
+    String ans=JOptionPane.showInputDialog(null,"Do you want to go to college or get a job right away?(type 'a' for college and 'b' for job)"); 
+
+    if(ans.equals("a")) {
+      obj1 = new College(fName, lName);
+   ((College)obj1).petMoney();
+       ((College)obj1).getMoney();
+   ((College)obj1).lifeSpan();
+    String ans1 = JOptionPane.showInputDialog(null, "After college, what job would you prefer? (type 'l' for lawyer, 's' for scientist, and 'd' for doctor)"); 
+
+    //methods for lawyer
+    if(ans1.equals("l")){
+        obj1 = new Lawyer(fName, lName);
+        ((Lawyer)obj1).DiscussWithClient();
+        ((Lawyer)obj1).Court();
+        ((Lawyer)obj1).SearchingClients();
+        obj1.getMoney();
+        obj1.petMoney();
+        obj1.lifeSpan();
+
+      //methods for scientist
+        } else if(ans1.equals("s")){      
+        obj1 = new Scientist(fName, lName);
+        ((Scientist)obj1).mixChemicals();
+        ((Scientist)obj1).test();
+        ((Scientist)obj1).theory();
+        obj1.getMoney();
+        obj1.petMoney();
+        obj1.lifeSpan();
+      
+        } else{
+      //methods for doctor
+        obj1 = new Doctor(fName, lName);
+        JOptionPane.showMessageDialog(null,"Your choice of profession: " + obj1.getClass().getName());
+       ((Doctor)obj1).livesSaved();
+       ((Doctor)obj1).livesLost();
+       obj1.getMoney();
+        obj1.petMoney();
+        obj1.lifeSpan();
+    
+        }
+    }
+      
+    else {
+      obj1 = new Career(fName, lName);
+        ((Career)obj1).bonus();
+        ((Career)obj1).vacayDays();
+        obj1.getMoney();
+        obj1.petMoney();
+        obj1.lifeSpan();
+    String ans2 = JOptionPane.showInputDialog(null, "What job would you like to start off with? (type 'a' for actor, 'w' for writer, and 's' for singer)"); 
+
+    //methods for actor
+    if(ans2.equals("a")){
+    	JOptionPane.showMessageDialog(null,"Your choice of profession: " + obj1.getClass().getName());
+        obj1 = new Actor(fName, lName);
+        ((Actor)obj1).intro();
+        ((Actor)obj1).setStageName();
+        ((Actor)obj1).chooseMovie();
+        ((Actor)obj1).success();
+        ((Actor)obj1).bonus();
+        ((Actor)obj1).vacayDays();
+        obj1.getMoney();
+        obj1.petMoney();
+        obj1.lifeSpan();
+      
+        } else if(ans2.equals("w")){
+      //methods for writer
+        JOptionPane.showMessageDialog(null,"Your choice of profession: " + obj1.getClass().getName());
+        obj1 = new Writer(fName, lName);
+        ((Writer)obj1).intro();
+        ((Writer)obj1).makeBook();
+        ((Writer)obj1).published();
+        ((Writer)obj1).bonus();
+        ((Writer)obj1).vacayDays();
+        obj1.getMoney();
+        obj1.petMoney();
+        obj1.lifeSpan();
+      
+        } else{
+      //methods for singer
+        obj1 = new Singer(fName, lName);
+        ((Singer)obj1).albumsSold();
+        obj1.getMoney();
+        ((Singer)obj1).floppedSongs();
+        obj1.petMoney();
+        obj1.lifeSpan();
+        }
+    }
+  }
+}
+
+
