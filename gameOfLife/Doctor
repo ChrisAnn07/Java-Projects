@@ -1,0 +1,56 @@
+//Prathikha
+import java.util.*;
+import javax.swing.JOptionPane; 
+public class Doctor extends College {
+	Scanner scan = new Scanner(System.in);
+	Random rand = new Random();
+	public Doctor(String firstName, String lastName)
+	{
+		super(firstName, lastName);
+	}
+
+  //The doctor inputs how many people they saved in their career
+	public int livesSaved()
+	{
+		String str = JOptionPane.showInputDialog(null, "How many lives have you saved in your career (keep under 40)?");
+		int n = Integer.parseInt(str); 
+		return n;
+	}
+
+  //money is add to the balance based on how many people were saved
+	public void getMoney() {
+	      balance += livesSaved() * 2;
+	      JOptionPane.showMessageDialog(null,"$" + balance + ". You were able to earn money because of the people you saved... but there's a catch..."); 
+	    
+	}
+
+  //balance updated to subtract the money that was lost when a patient dies (the families sue)
+  public void livesLost()
+  {
+    int num = rand.nextInt(10);
+    balance -= num * 2;
+    JOptionPane.showMessageDialog(null, "It seems you have lost " + num + " lives during your time as a doctor and you get sued. New Balance: $" + balance); 
+  }
+
+  //the money it takes to take care of the pet is subtracted
+    public void petMoney()
+  {
+    balance -= 10;
+        JOptionPane.showMessageDialog(null,"$" + balance + " balance after paying for pet food and checkups.");
+  }
+
+  //The lifespan is compared with the balance to find out whether or not the person died or gained immortality.
+	public void lifeSpan(){
+			if(balance > 450)
+      {
+        JOptionPane.showMessageDialog(null, "The rules of this game state that when you're total money exeeds your lifeSpan you pass away. That has occured, so you're dead."); 
+      }
+    else
+      {
+        JOptionPane.showMessageDialog(null, "The rules of this game state that when you're total money exeeds your lifeSpan you pass away. You've pushed successfully finished this game without this occuring. New Skill Unlocked: Immortality."); 
+      }
+	   }
+}
+
+
+
