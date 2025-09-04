@@ -1,0 +1,90 @@
+import java.util.*;
+import java.io.*;
+import javax.swing.JOptionPane; 
+
+public class Scientist extends College
+  {
+    //variables for methods
+    String firstName;
+    String lastName;
+    protected int amount;
+    private int scenario;
+    private int theory;
+    //main constructor 
+    public Scientist(String firstName, String lastName)
+    {
+		  super(firstName, lastName);
+    }
+    //provides few scenarios where you make something from a few chemicals
+    public void mixChemicals()
+    {
+      Random rng = new Random();
+      scenario = rng.nextInt(3)+1; 
+      switch(scenario)
+        {
+          case 1: 
+            JOptionPane.showMessageDialog(null,"You combined some vinegar and peroxide to make peracetic acid, you set aside the acid to test later");
+            break;
+          case 2:
+            JOptionPane.showMessageDialog(null,"You combine some sodium and chlorine gas to form Sodium Chloride (salt)");
+            break;
+          case 3:
+            JOptionPane.showMessageDialog(null,"You combine Sulfur and Chlorine to make Sulfur dichloride");
+            break; 
+        }
+    }
+    //In this one, you always provide a failed test, will always lose money
+    public String test()
+    {
+      JOptionPane.showMessageDialog(null,"You decided to test out Potassium, and you drop it in water in a controlled environment/n./n./nYeah it exploded.");
+      return "";
+    }
+    //Your character thinks up a theory then decides to pass it on and has a 50/50 chance of it being sucessful or not
+    public void theory()
+    {
+      Random rng = new Random();
+      JOptionPane.showMessageDialog(null,"You start to make a theory you want to present to other scientists");
+      theory = rng.nextInt(2)+1;
+      if(theory == 1)
+      {
+        JOptionPane.showMessageDialog(null,"Scientists like your theory and it gets passed on to more higher ranked scientists.");
+      }
+      if(theory == 2)
+      {
+        JOptionPane.showMessageDialog(null,"The others don't really like it so you disregard the theory");
+      }
+      }
+
+    public void getMoney() {
+      if(theory == 1) {
+	      balance += 70;
+	      JOptionPane.showMessageDialog(null,"$" + balance + ". You were able to earn money because your theory is accepted and passed onto higher ranked scientists."); 
+      }
+      else if(theory == 2)
+      {
+        balance -= 25;
+	      JOptionPane.showMessageDialog(null,"$" + balance + ". You lost money because your theory was liked by your colleagues."); 
+      }
+	}
+    
+     //the money it takes to take care of the pet is subtracted
+   public void petMoney()
+  {
+    balance -= 10;
+        JOptionPane.showMessageDialog(null,"$" + balance + " balance after paying for pet food and checkups."); 
+  }
+
+   //The lifespan is compared with the balance to find out whether or not the person died or gained immortality.
+   public void lifeSpan(){
+			if(balance > 410)
+      {
+        JOptionPane.showMessageDialog(null, "The rules of this game state that when you're total money exeeds your lifeSpan you pass away. That has occured, so you're dead."); 
+      }
+    else
+      {
+        JOptionPane.showMessageDialog(null, "The rules of this game state that when you're total money exeeds your lifeSpan you pass away. You've pushed successfully finished this game without this occuring. New Skill Unlocked: Immortality."); 
+      }
+	   }
+    
+   
+  }
