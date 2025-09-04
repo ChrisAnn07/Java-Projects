@@ -1,0 +1,27 @@
+package projects;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import java.util.Scanner;
+
+public class Frame
+{
+      public static void main(String[] args)
+   {
+      JFrame frame = new JFrame("Hangman");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+      Hangman panel = new Hangman();
+      
+      frame.getContentPane().add(panel);
+      
+      
+      frame.pack();
+      frame.setVisible(true);
+      
+     
+   }
+}
