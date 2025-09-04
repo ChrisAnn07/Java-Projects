@@ -1,9 +1,8 @@
-// Shayari
 import javax.swing.*;
 import java.util.*;
 import java.io.*;
 
-// Shayari
+Shayari
 public class Actor extends Career
 {
   // instance variables
