@@ -1,0 +1,94 @@
+// Thomas
+import java.util.*;
+import javax.swing.JOptionPane;
+
+public class Lawyer extends College
+  {
+    //variables for methods
+    private int discuss;
+    private int win;
+    //constructor
+    public Lawyer(String firstName, String lastName)
+    {
+      super(firstName, lastName);
+    }
+    //Uses a switch statment to have multiple random scenarios to discuss with your client
+    public void DiscussWithClient()
+    {
+      Random rng = new Random();
+      discuss = rng.nextInt(5)+1;
+      switch(discuss)
+        {
+        case 1:
+          JOptionPane.showMessageDialog(null,"You discussed with your client how this case may go.");
+        break;
+        case 2:
+          JOptionPane.showMessageDialog(null,"You and your client both agree upon that this case may not go well");
+        break;
+        case 3:
+          JOptionPane.showMessageDialog(null,"");
+          System.out.println("You and your client plan on how were gonna prove them to be innocent");
+        break;
+        case 4:
+          JOptionPane.showMessageDialog(null,"You and your client start to argue about politics for some reason");
+        break;
+        case 5:
+          JOptionPane.showMessageDialog(null,"You agree upon that your client may actually be guilty");
+        break;
+        }
+  
+    }
+    //method which has a 50/50 chance to prove your client is innocent and gets respective payment
+  public void Court()
+    {
+      Random rng = new Random();
+      win = rng.nextInt(2)+1;
+      if(win == 1)
+      {
+          JOptionPane.showMessageDialog(null,"You sucessfully proved the jury and the court that your client is INNOCENT");
+        getMoney();
+      }
+      if(win == 2)
+      {
+         JOptionPane.showMessageDialog(null,"You have unfortunately failed to prove your client was innocent.");
+        getMoney();
+      }
+    
+    }
+  //Method that just says you start searching for a client
+  public void SearchingClients()
+    {
+        JOptionPane.showMessageDialog(null,"You're searching for a client in need of a lawyer.");
+      
+    }
+      //gain or lose money depending on the case results
+    	public void getMoney() {
+        if(win == 1) {
+	      balance += 50;
+	     JOptionPane.showMessageDialog(null, "$" + balance + " balance because you won your case."); 
+        }
+        else if(win == 2) {
+           balance -= 20;
+          JOptionPane.showMessageDialog(null,"$" + balance + " balance because you lost your case.");
+        }
+      }
+
+      //the money it takes to take care of the pet is subtracted
+      public void petMoney()
+  {
+    balance -= 10;
+        JOptionPane.showMessageDialog(null,"$" + balance + " after paying for pet food and checkups."); 
+  }
+    
+    //The lifespan is compared with the balance to find out whether or not the person died or gained immortality.
+    	public void lifeSpan(){
+			if(balance > 450)
+      {
+        JOptionPane.showMessageDialog(null, "The rules of this game state that when you're total money exeeds your lifeSpan you pass away. That has occured, so you're dead."); 
+      }
+    else
+      {
+        JOptionPane.showMessageDialog(null, "The rules of this game state that when you're total money exeeds your lifeSpan you pass away. You've pushed successfully finished this game without this occuring. New Skill Unlocked: Immortality."); 
+      }
+	   }     
+}
