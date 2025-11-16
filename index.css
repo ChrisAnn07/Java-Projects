@@ -1,0 +1,133 @@
+/* Global Reset and Typography */
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+.app-container {
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Alert Messages */
+.alert {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    font-weight: 600;
+    border-radius: 4px;
+    margin-bottom: 0px;
+}
+.alert.success {
+    background-color: #e6ffed;
+    color: #38a169;
+}
+.alert.error {
+    background-color: #fff0f5;
+    color: #98e1fe;
+}
+/* 1. EXPENSE PANEL (Left Column) */
+.expense-panel-wrapper {
+    /* Fixed width for the sidebar */
+    flex: 0 0 320px; 
+    margin-right: 25px;
+    
+    /* Make the panel sticky */
+    position: sticky;
+    top: 20px; 
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.expense-panel {
+    padding: 20px;
+    background-color:#92487A ;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Stat Card Styling */
+.stat-card {
+    background-color: #faf7fc;
+    border-left: 5px solid #b4dbff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.category-breakdown ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+/* 2. CALENDAR (Right Column) */
+.calendar-container {
+    flex-grow: 1; /* <-- Takes up all available space */
+    min-width: 800px; 
+}
+
+.calendar {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-grid {
+    border-top: 1px solid #e0e0e0;
+}
+
+.calendar-day {
+    min-height: 100px;
+    transition: background-color 0.1s;
+}
+
+.calendar-day:hover {
+    background-color: #f5f5f5;
+}
+
+.other-month {
+    background-color: #fafafa;
+}
+
+.today {
+    background-color: #fff7f7;
+}
+
+.event-marker {
+    cursor: pointer;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+}
